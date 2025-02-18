@@ -4,8 +4,8 @@ import pickle
 import numpy as np
 
 model_table = {
-    "Model": ['Decision Tree Classifier' , 'Gradient Boost Classifier' , 'KNeighbors Regressor' , 'KNeighbors Classifier' , 'Linear Discriminate Analysis(LDA)' , 'Logistic Regression', 'Linear Regression' , 'Lasso' , 'MLP Classifier' , 'Ridge', 'Random Forest Classifier' , 'SVC ' , 'XGB Classifier'],
-    "Scores (R^2)": [95.705, 97.750, 92.433, 76.294, 86.503, 93.865, 73.442, 00.045, 95.501, 73.228, 97.137, 32.924, 97.546]
+    "Model": ['Decision Tree Classifier' , 'Gradient Boost Classifier' , 'KNeighbors Regressor' , 'KNeighbors Classifier' , 'Linear Discriminate Analysis(LDA)' , 'Logistic Regression', 'Linear Regression' , 'Lasso' , 'MLP Classifier' , 'Ridge', 'Random Forest Classifier' , 'XGB Classifier'],
+    "Scores (R^2)": [95.705, 97.750, 92.433, 76.294, 86.503, 93.865, 73.442, 00.045, 95.501, 73.228, 97.137, 97.546]
  }
 
 def load_model(model_name):
@@ -29,7 +29,7 @@ def main():
     st.subheader('Model Scores')
     st.table(model_table)
 
-    model_name = st.selectbox('Select Model', [ 'Decision Tree Classifier' , 'Gradient Boost Classifier' , 'Linear Discriminate Analysis(LDA)' , 'Logistic Regression', 'Linear Regression' , 'Lasso' , 'MLP Classifier' , 'Ridge', 'Random Forest Classifier' , 'SVC ' , 'XGB Classifier'])
+    model_name = st.selectbox('Select Model', [ 'Decision Tree Classifier' , 'Gradient Boost Classifier' , 'Linear Discriminate Analysis(LDA)' , 'Logistic Regression', 'Linear Regression' , 'Lasso' , 'MLP Classifier' , 'Ridge', 'Random Forest Classifier'  , 'XGB Classifier'])
     
     model = None
 
@@ -51,8 +51,6 @@ def main():
             model = load_model('models/rdg.pkl')
     elif model_name == 'Random Forest Classifier':
             model = load_model('models/rfc.pkl')
-    elif model_name == 'SVC':
-            model = load_model('models/svc.pkl')
     elif model_name == 'XGB Classifier':
             model = load_model('models/xgb.pkl')
 
@@ -68,7 +66,7 @@ def main():
                 prediction = predict(model, uploaded_file)
                 prediction_percent = prediction[0] * 100
                 if prediction_percent < 60:
-                    st.success(f'No Tumor Dectected. Prediction Percentage: {prediction_percent:.3f}%')
+                    st.success(f'No Tumor Detected. Prediction Percentage: {prediction_percent:.3f}%')
                 else:
                     st.error(f'Tumor Detected. Prediction prediction: {prediction_percent:.3f}%')
 
