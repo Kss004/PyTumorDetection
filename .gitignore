@@ -1,0 +1,5 @@
+models/knc.pkl
+models/knr.pkl
+models/pca.pkl
+.venv
+.github
